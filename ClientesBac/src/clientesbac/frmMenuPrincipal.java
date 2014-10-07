@@ -6,12 +6,22 @@
 
 package clientesbac;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+import javax.swing.JFrame;
+import org.jvnet.substance.SubstanceLookAndFeel;
+
 /**
  *
- * @author DIEGO
+ * @author DIEGO, Wayner
  */
 public class frmMenuPrincipal extends javax.swing.JFrame {
 
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().
+                getImage(ClassLoader.getSystemResource("Recursos/bac_icono.png"));
+        return retValue;
+    }
     /**
      * Creates new form frmMenuPrincipal
      */
@@ -29,25 +39,79 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLabel3 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(getIconImage());
         getContentPane().setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 36)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Logo");
-        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 2, 36)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/bac_logo.jpg"))); // NOI18N
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(20, 20, 220, 120);
+        jLabel1.setBounds(510, 20, 460, 110);
 
-        jMenu1.setText("File");
+        jLabel2.setFont(new java.awt.Font("Tahoma", 3, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(153, 0, 0));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel2.setText("Menú Principal");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(60, 20, 280, 110);
+
+        jButton1.setFont(new java.awt.Font("Candara", 3, 36)); // NOI18N
+        jButton1.setText("Reportes");
+        getContentPane().add(jButton1);
+        jButton1.setBounds(550, 250, 310, 100);
+
+        jButton2.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
+        jButton2.setText("Salir");
+        getContentPane().add(jButton2);
+        jButton2.setBounds(860, 520, 110, 40);
+
+        jButton3.setFont(new java.awt.Font("Candara", 3, 36)); // NOI18N
+        jButton3.setText("Citas");
+        getContentPane().add(jButton3);
+        jButton3.setBounds(140, 250, 310, 100);
+        getContentPane().add(jSeparator2);
+        jSeparator2.setBounds(0, 150, 1030, 10);
+
+        jLabel3.setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 16)); // NOI18N
+        jLabel3.setText("Enpowered By Diego and Wayner");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(40, 540, 310, 20);
+
+        jMenu1.setText("Archivo");
+
+        jMenuItem1.setText("Citas");
+        jMenu1.add(jMenuItem1);
+        jMenu1.add(jSeparator1);
+
+        jMenuItem2.setText("Salir");
+        jMenu1.add(jMenuItem2);
+
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Edit");
+        jMenu2.setText("Consulta");
         jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Configuración");
+        jMenuBar1.add(jMenu3);
+
+        jMenu4.setText("Ayuda");
+        jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
 
@@ -59,28 +123,10 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+        
+        JFrame.setDefaultLookAndFeelDecorated(true);
+        //Esta instruccion aplica el skin
+        SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.NebulaSkin");
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -91,9 +137,20 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
 }
