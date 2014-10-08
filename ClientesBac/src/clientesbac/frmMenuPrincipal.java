@@ -9,6 +9,7 @@ package clientesbac;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import org.jvnet.substance.SubstanceLookAndFeel;
 
 /**
@@ -27,6 +28,24 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
      */
     public frmMenuPrincipal() {
         initComponents();
+    }
+    
+    public void procesarConfiguracion()
+    {
+        try{
+            String codigo = JOptionPane.showInputDialog(null,"Ingrese el código de seguridad","Permisos de Administrador",JOptionPane.WARNING_MESSAGE);
+            if (codigo.equals("topsecret"))
+            {
+                this.hide(); this.dispose();
+                frmConfiguracion f1 = new frmConfiguracion(); f1.show();
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Codigo Incorrecto","Error",JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        catch(Exception e){
+        }
+        
     }
 
     /**
@@ -48,10 +67,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -74,6 +94,11 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Candara", 3, 36)); // NOI18N
         jButton1.setText("Reportes");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1);
         jButton1.setBounds(550, 250, 310, 100);
 
@@ -113,6 +138,14 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem1);
+
+        jMenuItem3.setText("Configuración");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem3);
         jMenu1.add(jSeparator1);
 
         jMenuItem2.setText("Salir");
@@ -126,12 +159,19 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Consulta");
+
+        jMenuItem4.setText("Clientes");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem4);
+
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setText("Configuración");
-        jMenuBar1.add(jMenu3);
-
         jMenu4.setText("Ayuda");
+        jMenu4.setEnabled(false);
         jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
@@ -157,6 +197,20 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         this.hide(); this.dispose();
         frmIngresarCita f1 = new frmIngresarCita(); f1.show();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        procesarConfiguracion();
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.hide(); this.dispose();
+        frmMenuConsultas f1 = new frmMenuConsultas(); f1.show();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        this.hide(); this.dispose();
+        frmConsultaClientes f1 = new frmConsultaClientes(); f1.show();
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -184,11 +238,12 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
