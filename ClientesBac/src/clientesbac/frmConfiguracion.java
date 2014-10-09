@@ -9,6 +9,7 @@ package clientesbac;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.File;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -21,6 +22,9 @@ import org.jvnet.substance.SubstanceLookAndFeel;
  */
 public class frmConfiguracion extends javax.swing.JFrame {
 
+    String url = "";
+    boolean cambiarLogo = false;
+    
     public Image getIconImage() {
         Image retValue = Toolkit.getDefaultToolkit().
                 getImage(ClassLoader.getSystemResource("Recursos/bac_icono.png"));
@@ -44,10 +48,14 @@ public class frmConfiguracion extends javax.swing.JFrame {
         int seleccion = jFileChooser1.showOpenDialog(this); 
 
         if (seleccion == JFileChooser.APPROVE_OPTION) { 
-            File file = jFileChooser1.getSelectedFile(); 
             try { 
+                File file = jFileChooser1.getSelectedFile(); 
                 //Obteniendo la direccion del archivo
-                String url = file.getPath();
+                url = file.getPath();
+                
+                ImageIcon img = new ImageIcon(url); 
+                ImageIcon imgRedimensionada = new ImageIcon(img.getImage().getScaledInstance(110, 110, 0));
+                jLabelImg.setIcon(imgRedimensionada);
                 
             }
             catch(Exception es) {
@@ -70,10 +78,11 @@ public class frmConfiguracion extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jTextFieldNombre = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        jLabelImg = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jButton3 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         jFileChooser1.setAcceptAllFileFilterUsed(false);
 
@@ -100,13 +109,18 @@ public class frmConfiguracion extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Tahoma", 3, 20)); // NOI18N
         jButton1.setText("Procesar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1);
         jButton1.setBounds(320, 280, 180, 80);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jLabel2.setText("Logo del Programa:");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(100, 140, 200, 32);
+        jLabelImg.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jLabelImg.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        getContentPane().add(jLabelImg);
+        jLabelImg.setBounds(570, 140, 110, 110);
 
         jButton2.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
         jButton2.setText("Cargar");
@@ -130,6 +144,11 @@ public class frmConfiguracion extends javax.swing.JFrame {
         getContentPane().add(jButton3);
         jButton3.setBounds(40, 320, 110, 40);
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jLabel3.setText("Logo del Programa:");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(100, 140, 200, 32);
+
         setSize(new java.awt.Dimension(757, 461));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -140,8 +159,24 @@ public class frmConfiguracion extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         this.hide(); this.dispose();
-        frmMenuPrincipal f1 = new frmMenuPrincipal(); f1.show();
+        frmMenuPrincipal f1 = new frmMenuPrincipal();
+        f1.show();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (!url.equals(""))
+            cambiarLogo = true;
+        
+        JOptionPane.showMessageDialog(null, "Datos procesados Correctamente","Error",JOptionPane.INFORMATION_MESSAGE);
+        this.hide(); this.dispose();
+        frmMenuPrincipal f1 = new frmMenuPrincipal();
+        if (cambiarLogo == true){
+            clientesbac.clientesBac.g.setImagen(url);
+            f1.jLabelLogo.setIcon(clientesbac.clientesBac.g.getImagen());
+            System.out.println("Procesado");
+        }
+        f1.show();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -165,8 +200,9 @@ public class frmConfiguracion extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabelImg;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextFieldNombre;
     // End of variables declaration//GEN-END:variables
