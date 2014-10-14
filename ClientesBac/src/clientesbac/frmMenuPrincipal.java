@@ -59,6 +59,35 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
         }
         
     }
+    
+    
+    public void verificarCaja(){
+        try{
+            String estado=clientesbac.clientesBac.cajasCola.asignar();
+            if(!estado.equals("")){
+                enviarCorreoC(estado);
+                clientesbac.clientesBac.tiquetesCola.dequeue();
+                 JOptionPane.showMessageDialog(null, "Cita registrada correctamente","Información",JOptionPane.INFORMATION_MESSAGE);
+                
+            }
+            
+        }
+        catch(Exception e){}
+    }
+    
+    public void enviarCorreoC(String caja){
+        try{
+            Nodo nodo=clientesbac.clientesBac.tiquetesCola.getFirst();
+            
+            javamail mail = new javamail();
+            mail.send(nodo.getCorreo(),"Servicio al Cliente Bac San Jose","<p>Estimado(a) "+nodo.getNombre()+" le informamos que su cita sera en la "+caja+" </p>");
+            System.out.println("true");
+        }
+        catch(Exception e){
+            System.out.println("false");
+        }
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -242,7 +271,8 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        JOptionPane.showMessageDialog(null, "Citas verificadas correctamente","Información",JOptionPane.INFORMATION_MESSAGE);
+        verificarCaja();
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed

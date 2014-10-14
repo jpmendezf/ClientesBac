@@ -50,7 +50,20 @@ public class frmIngresarCita extends javax.swing.JFrame {
         }
         catch(Exception e){}
     }
-    
+    public void verificarCaja(){
+        try{
+            String estado=clientesbac.clientesBac.cajasCola.asignar();
+            if(!estado.equals("")){
+                //enviarCorreoC(estado);
+                System.out.println(clientesbac.clientesBac.tiquetesCola.getFirst().getNombre());
+                clientesbac.clientesBac.tiquetesCola.dequeue();
+                 JOptionPane.showMessageDialog(null, "Cita registrada correctamente","Información",JOptionPane.INFORMATION_MESSAGE);
+                
+            }
+            
+        }
+        catch(Exception e){}
+    }
     public void enviarCorreo(){
         try{
             javamail mail = new javamail();
@@ -64,6 +77,18 @@ public class frmIngresarCita extends javax.swing.JFrame {
             System.out.println("false");
         }
     }
+    
+    public void enviarCorreoC(String caja){
+        try{
+            javamail mail = new javamail();
+            mail.send(jTextFieldCorreo.getText(),"Servicio al Cliente Bac San Jose","<p>Estimado(a) "+jTextFieldNombre.getText()+" le informamos que su cita sera en la "+caja+" </p>");
+            System.out.println("true");
+        }
+        catch(Exception e){
+            System.out.println("false");
+        }
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -157,11 +182,16 @@ public class frmIngresarCita extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Faltan datos por completar","Mensaje de error",JOptionPane.ERROR_MESSAGE);
         else{
             agregarTiquete();
-            //enviarCorreo();
-            System.out.println(clientesbac.clientesBac.tiquetesCola.getSize());
+            enviarCorreo();
+            verificarCaja();
+            /*Nodo nodo=clientesbac.clientesBac.tiquetesCola.getFirst();
+            for(int i=0;i<clientesbac.clientesBac.tiquetesCola.getSize();i++){
+            System.out.println(nodo.getNombre());
+            nodo=nodo.getNext();
+            }*/
             jTextFieldCorreo.setText("");
             jTextFieldNombre.setText("");
-            JOptionPane.showMessageDialog(null, "Cita registrada correctamente","Información",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Tiquete registrado correctamente","Información",JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -60,8 +60,13 @@ public class Nodo {
         this.next=nodo;
     }
      public void setPrevious(Nodo nodo){
-        this.previous=nodo;
+         if(nodo==null){this.previous=null;}
+         else{
+        this.previous=nodo;}
+        
     }
+    
+     
      public void setNombre(String nom){
         this.nombre=nom;
     }
@@ -113,11 +118,12 @@ public class Nodo {
          if(this.getPrioridad()<nodo.getPrioridad()){
              return true;
          }
+         else
          if(this.getPrioridad()>nodo.getPrioridad()){
              return false;
          }
          else{
-             return true;
+             return false;
          }
      }
 }

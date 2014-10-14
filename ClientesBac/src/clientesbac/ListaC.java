@@ -28,10 +28,11 @@ public class ListaC {
              }
              else{
                  this.actual.setNext(caja);
+                 this.actual=this.actual.getNext();
              }
              this.size++;
              this.last=this.actual;
-             System.out.println(size);
+             
          }
          
        }  
@@ -41,14 +42,16 @@ public class ListaC {
          for(int i=0;i<this.size;i++){
              if(actual.getEstado()==false){
                  this.actual.setEstado(true);
+                 System.out.println(actual.getNombre());
                  return actual.getNombre();
+                 
                  
              }
              else{
                  this.actual=this.actual.getNext();
              }
          }
-         return actual.getNombre();
+         return "";
          
      }
      
@@ -56,9 +59,13 @@ public class ListaC {
      public void vaciar(int pos){
          this.actual=this.first;
          for(int i=0;i<pos-1;i++){
+             if(i==pos){
+                 this.actual.setEstado(false);
+                 break;
+             }
              this.actual=this.actual.getNext();
          }
-         this.actual.setEstado(false);
+         
      }
      
      public int getSize(){
