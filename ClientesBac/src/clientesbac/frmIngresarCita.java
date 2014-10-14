@@ -44,6 +44,7 @@ public class frmIngresarCita extends javax.swing.JFrame {
             hora = new SimpleDateFormat("HH:mm:ss");
             
             Nodo tiquete = new Nodo(jTextFieldCorreo.getText(), jTextFieldNombre.getText(), String.valueOf(jComboBoxTipo.getSelectedItem()), fecha.format(date), hora.format(date));
+            tiquete.fijarPrioridad();
             clientesbac.clientesBac.clientesCola.add(tiquete);
             clientesbac.clientesBac.tiquetesCola.add(tiquete);
         }
@@ -156,8 +157,15 @@ public class frmIngresarCita extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Faltan datos por completar","Mensaje de error",JOptionPane.ERROR_MESSAGE);
         else{
             agregarTiquete();
-            enviarCorreo();
-            System.out.println(clientesbac.clientesBac.tiquetesCola.getSize());
+            //enviarCorreo();
+            /*Nodo nodo=clientesbac.clientesBac.tiquetesCola.getFirst();
+            for(int i=0;i<clientesbac.clientesBac.tiquetesCola.getSize();i++){
+             
+            System.out.println(nodo.getNombre());
+            nodo=nodo.getNext();
+            }*/
+            System.out.println(clientesbac.clientesBac.tiquetesCola.getFirst().getNombre()); 
+            
             jTextFieldCorreo.setText("");
             jTextFieldNombre.setText("");
             JOptionPane.showMessageDialog(null, "Cita registrada correctamente","Información",JOptionPane.INFORMATION_MESSAGE);

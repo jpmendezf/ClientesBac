@@ -34,7 +34,7 @@ public class Cola {
    }
    
    public void add(Nodo nodo) 
-    {            
+    {          Nodo aux=new Nodo();  
             // caso de lista vacía
             if (this.size == 0) 
             { 
@@ -45,9 +45,11 @@ public class Cola {
             }
             else 
             { this.actual=this.first;
+            aux=this.actual;
                 for(int i=0;i<this.size;i++){
                 if(this.actual.CompareTo(nodo)==true){
                     if(actual.getNext()!=null){
+                        aux=actual;
                     actual=this.actual.getNext();
                                          
                    }
@@ -64,10 +66,16 @@ public class Cola {
             if(actual==this.last){
                     this.last=nodo;
             }
-                nodo.setPrevious(actual.getPrevious());
+             
+            
+                nodo.setPrevious(aux);
+             
+                 
                 nodo.setNext(actual);
-                actual.setPrevious(nodo);
+                
+                //actual.setPrevious(nodo);
                 this.size++;
+              
                 
     }//fin metodo
    

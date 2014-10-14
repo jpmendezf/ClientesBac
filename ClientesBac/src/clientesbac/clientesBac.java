@@ -24,6 +24,9 @@ public class clientesBac {
         JFrame.setDefaultLookAndFeelDecorated(true);
         //Esta instruccion aplica el skin
         SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.NebulaSkin");
+        /* Nodo tiquete = new Nodo("co", "wayner", "Regular","", "");
+            tiquete.fijarPrioridad();
+            clientesCola.add(tiquete);*/
 
         frmMenuPrincipal f1 = new frmMenuPrincipal();
         f1.show();
