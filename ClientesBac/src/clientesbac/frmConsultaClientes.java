@@ -25,6 +25,8 @@ import org.jvnet.substance.SubstanceLookAndFeel;
  */
 public class frmConsultaClientes extends javax.swing.JFrame {
 
+    manejadorReportes m = new manejadorReportes();
+    
     public Image getIconImage() {
         Image retValue = Toolkit.getDefaultToolkit().
                 getImage(ClassLoader.getSystemResource("Recursos/bac_icono.png"));
@@ -39,6 +41,39 @@ public class frmConsultaClientes extends javax.swing.JFrame {
         jXDatePicker2.setFormats(new String[]{"d/M/yyyy"});
         jXDatePicker1.getEditor().setEditable(false);
         jXDatePicker2.getEditor().setEditable(false);
+        m.tablaClientes(jTable1);
+    }
+    
+    public void limpiar(){
+        remove(jTable1);
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Nombre", "Tipo", "Correo", "Fecha", "Hora"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
     }
     
     public void pastel(){

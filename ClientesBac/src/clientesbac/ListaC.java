@@ -31,7 +31,7 @@ public class ListaC {
              }
              this.size++;
              this.last=this.actual;
-             
+             System.out.println(size);
          }
          
        }  
