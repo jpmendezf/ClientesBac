@@ -54,7 +54,7 @@ public class frmIngresarCita extends javax.swing.JFrame {
         try{
             String estado=clientesbac.clientesBac.cajasCola.asignar();
             if(!estado.equals("")){
-                //enviarCorreoC(estado);
+                enviarCorreoC(estado);
                 System.out.println(clientesbac.clientesBac.tiquetesCola.getFirst().getNombre());
                 clientesbac.clientesBac.tiquetesCola.dequeue();
                  JOptionPane.showMessageDialog(null, "Cita registrada correctamente","Información",JOptionPane.INFORMATION_MESSAGE);
@@ -182,7 +182,7 @@ public class frmIngresarCita extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Faltan datos por completar","Mensaje de error",JOptionPane.ERROR_MESSAGE);
         else{
             agregarTiquete();
-            //enviarCorreo();
+            enviarCorreo();
             verificarCaja();
             /*Nodo nodo=clientesbac.clientesBac.tiquetesCola.getFirst();
             for(int i=0;i<clientesbac.clientesBac.tiquetesCola.getSize();i++){

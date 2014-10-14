@@ -28,18 +28,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
      */
     public frmMenuPrincipal() {
         initComponents();
-        jLabelLogo.setIcon(clientesbac.clientesBac.g.getImagen());
-        
-        /*Enviar correos
-        try{
-            javamail mail = new javamail();
-            mail.send("ldiego800@gmail.com","Servicio al Cliente Bac San Jose","Este correo fue enviado usando JavaMail");
-            System.out.println("true");
-        }
-        catch(Exception e){
-            System.out.println("false");
-        }*/
-        
+        jLabelLogo.setIcon(clientesbac.clientesBac.g.getImagen());     
     }
     
     public void procesarConfiguracion()
@@ -72,7 +61,7 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
             }
             
         }
-        catch(Exception e){}
+        catch(Exception e){JOptionPane.showMessageDialog(null, "Listo","Información",JOptionPane.INFORMATION_MESSAGE);}
     }
     
     public void enviarCorreoC(String caja){
