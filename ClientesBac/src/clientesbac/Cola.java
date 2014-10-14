@@ -16,14 +16,14 @@ public class Cola {
     private int size;
     private Nodo actual;
     
-    Cola(){
+    public Cola(){
         first=null;
 	last=null;
 	size=0;
         actual=null;
     }
     
-   Cola(Nodo nodo){
+   public Cola(Nodo nodo){
    first=nodo;
    last=nodo;
    size=1;
@@ -31,7 +31,7 @@ public class Cola {
    }
    
    public void add(Nodo nodo) 
-        {            
+    {            
             // caso de lista vacía
             if (this.size == 0) 
             { 
@@ -64,12 +64,9 @@ public class Cola {
                 nodo.setPrevious(actual.getPrevious());
                 nodo.setNext(actual);
                 actual.setPrevious(nodo);
-                size++;
+                this.size++;
                 
-           
-           
-            
-        }//fin metodo
+    }//fin metodo
    
    public Nodo dequeue(){
       actual=this.first;

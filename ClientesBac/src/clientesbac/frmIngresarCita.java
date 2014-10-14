@@ -8,6 +8,9 @@ package clientesbac;
 
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import org.jvnet.substance.SubstanceLookAndFeel;
@@ -18,6 +21,10 @@ import org.jvnet.substance.SubstanceLookAndFeel;
  */
 public class frmIngresarCita extends javax.swing.JFrame {
 
+    Date date;
+    DateFormat fecha;
+    DateFormat hora;
+    
     public Image getIconImage() {
         Image retValue = Toolkit.getDefaultToolkit().
                 getImage(ClassLoader.getSystemResource("Recursos/bac_icono.png"));
@@ -28,6 +35,32 @@ public class frmIngresarCita extends javax.swing.JFrame {
      */
     public frmIngresarCita() {
         initComponents();
+    }
+    
+    public void agregarTiquete(){
+        try{
+            date = new Date();
+            fecha = new SimpleDateFormat("dd/MM/yyyy");
+            hora = new SimpleDateFormat("HH:mm:ss");
+            
+            Nodo tiquete = new Nodo(jTextFieldCorreo.getText(), jTextFieldNombre.getText(), String.valueOf(jComboBoxTipo.getSelectedItem()), fecha.format(date), hora.format(date));
+            clientesbac.clientesBac.tiquetesCola.add(tiquete);
+        }
+        catch(Exception e){}
+    }
+    
+    public void enviarCorreo(){
+        try{
+            javamail mail = new javamail();
+            mail.send(jTextFieldCorreo.getText(),"Servicio al Cliente Bac San Jose","<p>Estimado(a) "+jTextFieldNombre.getText()+" le informamos que la solicitud de la cita está siendo procesado</p>"
+                    + "<p>Tipo de Persona: "+String.valueOf(jComboBoxTipo.getSelectedItem())+"</p>"
+                    + "<p>Fecha de Registro: "+fecha.format(date)+"</p>"
+                    + "<p>Hora de registro: "+hora.format(date)+"</p>");
+            System.out.println("true");
+        }
+        catch(Exception e){
+            System.out.println("false");
+        }
     }
 
     /**
@@ -121,6 +154,9 @@ public class frmIngresarCita extends javax.swing.JFrame {
         if (jTextFieldNombre.getText().equals("") || jTextFieldCorreo.getText().equals(""))
             JOptionPane.showMessageDialog(null, "Faltan datos por completar","Mensaje de error",JOptionPane.ERROR_MESSAGE);
         else{
+            agregarTiquete();
+            enviarCorreo();
+            System.out.println(clientesbac.clientesBac.tiquetesCola.getSize());
             jTextFieldCorreo.setText("");
             jTextFieldNombre.setText("");
             JOptionPane.showMessageDialog(null, "Cita registrada correctamente","Información",JOptionPane.INFORMATION_MESSAGE);

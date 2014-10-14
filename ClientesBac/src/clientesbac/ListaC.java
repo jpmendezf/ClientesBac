@@ -18,8 +18,9 @@ public class ListaC {
     private NodoC actual;
     
      ListaC(int tamanio){
+         this.size = 0;
          while(this.size<tamanio){
-             NodoC caja= new NodoC();
+             NodoC caja= new NodoC("Caja "+(size+1));
              if(size==0){
                  this.first=caja;
                  this.actual=this.first;
@@ -50,6 +51,17 @@ public class ListaC {
          return -2;
          
      }
+     
+     public int getSize(){
+        return this.size;
+    }
+     public NodoC getLast(){
+        return this.last;
+    }
+
+    public NodoC getFirst(){
+        return this.first;
+    }
     
 }
 

@@ -39,7 +39,15 @@ public class javamail {
             message.setFrom(new InternetAddress((String) properties.get("mail.smtp.mail.sender")));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(destino));
             message.setSubject(asunto);
-            message.setText(mensaje);
+            
+            System.out.println(clientesbac.clientesBac.g.geturlLogo());
+            message.setContent
+            ("<img src=\"clientesbac.clientesBac.g.geturlLogo()\">"
+            +"<div>"+mensaje+"</div>"
+            +"</br><p>Saludos</p>", 
+            "text/html");
+            //message.setText(mensaje);
+            
             Transport t = session.getTransport("smtp");
             t.connect((String) properties.get("mail.smtp.user"), (String) properties.get("mail.smtp.password"));
             t.sendMessage(message, message.getAllRecipients());

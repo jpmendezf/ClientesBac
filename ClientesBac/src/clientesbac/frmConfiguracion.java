@@ -76,13 +76,13 @@ public class frmConfiguracion extends javax.swing.JFrame {
         jFileChooser1 = new javax.swing.JFileChooser();
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextFieldNombre = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabelImg = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jButton3 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jSpinnerCajas = new javax.swing.JSpinner();
 
         jFileChooser1.setAcceptAllFileFilterUsed(false);
 
@@ -102,10 +102,6 @@ public class frmConfiguracion extends javax.swing.JFrame {
         jLabel5.setText("Número de Cajas:");
         getContentPane().add(jLabel5);
         jLabel5.setBounds(100, 210, 170, 32);
-
-        jTextFieldNombre.setText("5");
-        getContentPane().add(jTextFieldNombre);
-        jTextFieldNombre.setBounds(320, 210, 180, 32);
 
         jButton1.setFont(new java.awt.Font("Tahoma", 3, 20)); // NOI18N
         jButton1.setText("Procesar");
@@ -149,6 +145,10 @@ public class frmConfiguracion extends javax.swing.JFrame {
         getContentPane().add(jLabel3);
         jLabel3.setBounds(100, 140, 200, 32);
 
+        jSpinnerCajas.setModel(new javax.swing.SpinnerNumberModel(5, 1, 50, 1));
+        getContentPane().add(jSpinnerCajas);
+        jSpinnerCajas.setBounds(320, 210, 180, 26);
+
         setSize(new java.awt.Dimension(757, 461));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -165,17 +165,28 @@ public class frmConfiguracion extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (!url.equals(""))
+        {
             cambiarLogo = true;
-        
-        JOptionPane.showMessageDialog(null, "Datos procesados Correctamente","Error",JOptionPane.INFORMATION_MESSAGE);
-        this.hide(); this.dispose();
-        frmMenuPrincipal f1 = new frmMenuPrincipal();
-        if (cambiarLogo == true){
-            clientesbac.clientesBac.g.setImagen(url);
-            f1.jLabelLogo.setIcon(clientesbac.clientesBac.g.getImagen());
-            System.out.println("Procesado");
+            try{
+                if (cambiarLogo == true){
+                    clientesbac.clientesBac.g.setImagen(url);
+                    System.out.println("Imagen Procesada");
+                }
+
+                clientesbac.clientesBac.cajasCola = new ListaC((Integer)jSpinnerCajas.getValue());
+                System.out.println(clientesbac.clientesBac.cajasCola.getSize());
+                System.out.println(clientesbac.clientesBac.cajasCola.getLast().getNombre());
+
+                JOptionPane.showMessageDialog(null, "Datos procesados Correctamente","Error",JOptionPane.INFORMATION_MESSAGE);
+                this.hide(); this.dispose();
+                frmMenuPrincipal f1 = new frmMenuPrincipal();
+                f1.show();
+            }
+            catch(Exception e){}
         }
-        f1.show();
+        else{
+            JOptionPane.showMessageDialog(null, "Faltan datos por completar","Mensaje de error",JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -204,6 +215,6 @@ public class frmConfiguracion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabelImg;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextFieldNombre;
+    private javax.swing.JSpinner jSpinnerCajas;
     // End of variables declaration//GEN-END:variables
 }

@@ -17,7 +17,14 @@ public class NodoC {
     private NodoC previous;
     
     NodoC(){
-        this.nombre=null;
+        this.nombre="Caja 1";
+        this.estado=false;
+        this.next=null;
+        this.previous=null;
+    }
+    
+    NodoC(String n){
+        this.nombre=n;
         this.estado=false;
         this.next=null;
         this.previous=null;

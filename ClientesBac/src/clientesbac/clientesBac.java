@@ -16,6 +16,8 @@ import org.jvnet.substance.SubstanceLookAndFeel;
 public class clientesBac {
     
     public static globalVariables g = new globalVariables();
+    public static Cola tiquetesCola = new Cola();
+    public static ListaC cajasCola = new ListaC(5);
             
     public static void main(String args[]) {
         JFrame.setDefaultLookAndFeelDecorated(true);
@@ -23,7 +25,6 @@ public class clientesBac {
         SubstanceLookAndFeel.setSkin("org.jvnet.substance.skin.NebulaSkin");
 
         frmMenuPrincipal f1 = new frmMenuPrincipal();
-        f1.jLabelLogo.setIcon(g.getImagen());
         f1.show();
     }
 }

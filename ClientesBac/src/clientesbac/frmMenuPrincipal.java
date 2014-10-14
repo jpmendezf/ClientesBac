@@ -28,7 +28,6 @@ public class frmMenuPrincipal extends javax.swing.JFrame {
      */
     public frmMenuPrincipal() {
         initComponents();
-        
         jLabelLogo.setIcon(clientesbac.clientesBac.g.getImagen());
         
         /*Enviar correos
