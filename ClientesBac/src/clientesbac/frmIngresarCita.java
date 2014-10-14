@@ -44,6 +44,7 @@ public class frmIngresarCita extends javax.swing.JFrame {
             hora = new SimpleDateFormat("HH:mm:ss");
             
             Nodo tiquete = new Nodo(jTextFieldCorreo.getText(), jTextFieldNombre.getText(), String.valueOf(jComboBoxTipo.getSelectedItem()), fecha.format(date), hora.format(date));
+            clientesbac.clientesBac.clientesCola.add(tiquete);
             clientesbac.clientesBac.tiquetesCola.add(tiquete);
         }
         catch(Exception e){}
@@ -106,7 +107,7 @@ public class frmIngresarCita extends javax.swing.JFrame {
         jLabel5.setBounds(97, 250, 170, 32);
 
         jComboBoxTipo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Regular", "Adulto Mayor", "Corporativo", "Embarazada", "Discapacitado" }));
+        jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Regular", "Corporativo", "Adulto Mayor", "Embarazada", "Discapacitado" }));
         getContentPane().add(jComboBoxTipo);
         jComboBoxTipo.setBounds(310, 180, 270, 32);
         getContentPane().add(jTextFieldCorreo);

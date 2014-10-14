@@ -6,9 +6,17 @@
 
 package clientesbac;
 
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
 import org.jvnet.substance.SubstanceLookAndFeel;
 
 /**
@@ -31,6 +39,46 @@ public class frmConsultaClientes extends javax.swing.JFrame {
         jXDatePicker2.setFormats(new String[]{"d/M/yyyy"});
         jXDatePicker1.getEditor().setEditable(false);
         jXDatePicker2.getEditor().setEditable(false);
+    }
+    
+    public void pastel(){
+        // Fuente de Datos
+        DefaultPieDataset data = new DefaultPieDataset();
+        data.setValue("Regular", 40);
+        data.setValue("Corporativo", 20);
+        data.setValue("Adulto Mayor", 15);
+        data.setValue("Embarazada", 15);
+        data.setValue("Discapacitado", 10);
+ 
+        // Creando el Grafico
+        JFreeChart chart = ChartFactory.createPieChart(
+         "Gráfico de pastel por tipo de Cliente", 
+         data, 
+         true, 
+         true, 
+         false);
+ 
+        // Mostrar Grafico
+        ChartFrame frame = new ChartFrame("Reporte", chart);
+        frame.pack();
+        frame.setVisible(true);
+    }
+    
+    public void barras(){
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        dataset.setValue(1, "Cliente","Regular");
+        dataset.setValue(1, "Cliente","Corporativo");
+        dataset.setValue(1, "Cliente","Adulto Mayor");
+        dataset.setValue(1, "Cliente","Embarazada");
+        dataset.setValue(1, "Cliente","Discapacitado");
+        // Creando el Grafico
+        JFreeChart chart = ChartFactory.createBarChart3D
+        ("Gráfico de barras por tipo de Cliente","", "Cantidad", 
+        dataset, PlotOrientation.VERTICAL, true,true, false);
+        
+        ChartFrame frame = new ChartFrame("Reporte", chart);
+        frame.pack();
+        frame.setVisible(true);
     }
 
     /**
@@ -179,7 +227,7 @@ public class frmConsultaClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButtonPastelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPastelActionPerformed
-        // TODO add your handling code here:
+        barras();
     }//GEN-LAST:event_jButtonPastelActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -187,7 +235,7 @@ public class frmConsultaClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButtonBarrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBarrasActionPerformed
-        // TODO add your handling code here:
+        pastel();
     }//GEN-LAST:event_jButtonBarrasActionPerformed
 
     /**

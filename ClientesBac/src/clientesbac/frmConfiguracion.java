@@ -9,6 +9,8 @@ package clientesbac;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -42,6 +44,24 @@ public class frmConfiguracion extends javax.swing.JFrame {
     {
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos de imagen", "jpg", "png");
         jFileChooser1.setFileFilter(filter);
+        
+        try{
+            SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
+            String strFecha1 = "08/07/2014";
+            String strFecha2 = "08/08/2014";
+            String strFecha3 = "08/10/2014";
+            Date fecha1 = null;
+            Date fecha2 = null;
+            Date fecha3 = null;
+            fecha1 = formateador.parse(strFecha1);
+            fecha2 = formateador.parse(strFecha2);
+            fecha3 = formateador.parse(strFecha3);
+            if (fecha2.before(fecha1))
+                System.out.println("Si");
+            else
+                System.out.println("No");
+        }
+        catch(Exception e){}
     }
     
     public void procesarJfileChooser1() {
@@ -174,8 +194,8 @@ public class frmConfiguracion extends javax.swing.JFrame {
                 }
 
                 clientesbac.clientesBac.cajasCola = new ListaC((Integer)jSpinnerCajas.getValue());
-                System.out.println(clientesbac.clientesBac.cajasCola.getSize());
-                System.out.println(clientesbac.clientesBac.cajasCola.getLast().getNombre());
+                System.out.println("Tamaño lista: "+clientesbac.clientesBac.cajasCola.getSize());
+                System.out.println("Nombre del ultimo nodo: "+clientesbac.clientesBac.cajasCola.getLast().getNombre());
 
                 JOptionPane.showMessageDialog(null, "Datos procesados Correctamente","Error",JOptionPane.INFORMATION_MESSAGE);
                 this.hide(); this.dispose();

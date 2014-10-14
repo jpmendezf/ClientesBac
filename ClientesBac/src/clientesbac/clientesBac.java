@@ -16,6 +16,7 @@ import org.jvnet.substance.SubstanceLookAndFeel;
 public class clientesBac {
     
     public static globalVariables g = new globalVariables();
+    public static Cola clientesCola = new Cola();
     public static Cola tiquetesCola = new Cola();
     public static ListaC cajasCola = new ListaC(5);
             
