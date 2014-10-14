@@ -6,9 +6,11 @@
 
 package clientesbac;
 
+import static clientesbac.clientesBac.cajasCola;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import org.jvnet.substance.SubstanceLookAndFeel;
 
 /**
@@ -27,6 +29,45 @@ public class frmCajas extends javax.swing.JFrame {
      */
     public frmCajas() {
         initComponents();
+        rellenar();
+    }
+    
+    public void rellenar(){
+        NodoC nodo=cajasCola.getFirst();
+         for(int i=0;i<cajasCola.getSize();i++){
+          jComboBoxTipo.addItem(nodo.getNombre());
+             nodo=nodo.getNext();
+         }
+        
+
+    }
+    
+    public void verificarCaja(){
+        try{
+            String estado=clientesbac.clientesBac.cajasCola.asignar();
+            if(!estado.equals("")){
+                enviarCorreoC(estado);
+                 
+                clientesbac.clientesBac.tiquetesCola.dequeue();
+                 JOptionPane.showMessageDialog(null, "Cita registrada correctamente","Información",JOptionPane.INFORMATION_MESSAGE);
+                
+            }
+            
+        }
+        catch(Exception e){}
+    }
+    
+    public void enviarCorreoC(String caja){
+        try{
+            Nodo nodo=clientesbac.clientesBac.tiquetesCola.getFirst();
+            
+            javamail mail = new javamail();
+            mail.send(nodo.getCorreo(),"Servicio al Cliente Bac San Jose","<p>Estimado(a) "+nodo.getNombre()+" le informamos que su cita sera en la "+caja+" </p>");
+            System.out.println("true");
+        }
+        catch(Exception e){
+            System.out.println("false");
+        }
     }
 
     /**
@@ -58,7 +99,11 @@ public class frmCajas extends javax.swing.JFrame {
         jLabel1.setBounds(110, 10, 440, 70);
 
         jComboBoxTipo.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5" }));
+        jComboBoxTipo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBoxTipoMouseClicked(evt);
+            }
+        });
         getContentPane().add(jComboBoxTipo);
         jComboBoxTipo.setBounds(230, 160, 190, 32);
 
@@ -95,13 +140,20 @@ public class frmCajas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+        clientesbac.clientesBac.cajasCola.vaciar(jComboBoxTipo.getSelectedIndex());
+        verificarCaja();
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         this.hide(); this.dispose();
         frmMenuPrincipal f1 = new frmMenuPrincipal(); f1.show();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jComboBoxTipoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxTipoMouseClicked
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_jComboBoxTipoMouseClicked
 
     /**
      * @param args the command line arguments

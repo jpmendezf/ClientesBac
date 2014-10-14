@@ -19,6 +19,7 @@ public class clientesBac {
     public static Cola clientesCola = new Cola();
     public static Cola tiquetesCola = new Cola();
     public static ListaC cajasCola = new ListaC(5);
+   
             
     public static void main(String args[]) {
         JFrame.setDefaultLookAndFeelDecorated(true);
@@ -27,7 +28,7 @@ public class clientesBac {
         /* Nodo tiquete = new Nodo("co", "wayner", "Regular","", "");
             tiquete.fijarPrioridad();
             clientesCola.add(tiquete);*/
-
+        
         frmMenuPrincipal f1 = new frmMenuPrincipal();
         f1.show();
     }

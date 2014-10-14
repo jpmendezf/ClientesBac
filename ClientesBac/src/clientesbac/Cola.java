@@ -79,12 +79,12 @@ public class Cola {
                 
     }//fin metodo
    
-   public Nodo dequeue(){
-      actual=this.first;
+   public void dequeue(){
+      //actual=this.first;
       this.first= this.first.getNext();
       this.first.setPrevious(null);
       size--;
-      return actual;
+      
    }
    public void delete(Nodo nodo){// metodo auxiliar en caso de ocuparlo
        actual=nodo.getPrevious();
