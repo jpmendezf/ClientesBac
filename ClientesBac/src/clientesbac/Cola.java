@@ -75,7 +75,7 @@ public class Cola {
       size--;
       return actual;
    }
-   public void delete(Nodo nodo){
+   public void delete(Nodo nodo){// metodo auxiliar en caso de ocuparlo
        actual=nodo.getPrevious();
        actual.setNext(nodo.getNext() );
        actual=nodo.getNext();
@@ -85,7 +85,38 @@ public class Cola {
        size--;
                      
    }
+   public Cola buscarTipo(String criterio){//para cuando se ocupe listas x tipo
+       Cola cola=new Cola();
+       this.actual=this.first;
+       for(int i=0;i<this.size;i++){
+            if(actual.getTipo().equals(criterio)){
+                cola.add(actual);
+             }
+       }
+       return cola;
+   }
    
+   public Cola buscarHora(String criterio){//para cuando se ocupe listas x hora
+       Cola cola=new Cola();
+       this.actual=this.first;
+       for(int i=0;i<this.size;i++){
+            if(actual.getHora().equals(criterio)){
+                cola.add(actual);
+             }
+       }
+       return cola;
+   }
+   
+   public Cola buscarFecha(String criterio){//para cuando se ocupe listas x fecha
+       Cola cola=new Cola();
+       this.actual=this.first;
+       for(int i=0;i<this.size;i++){
+            if(actual.getFecha().equals(criterio)){
+                cola.add(actual);
+             }
+       }
+       return cola;
+   }
   
    
    // gets de la clase
@@ -100,4 +131,3 @@ public class Cola {
              return this.size;
          }
 }
-

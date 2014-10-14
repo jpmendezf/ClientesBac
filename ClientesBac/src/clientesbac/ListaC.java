@@ -36,20 +36,29 @@ public class ListaC {
          
        }  
      
-     public int asignar(){// devuelve la posicion en la q se asignara al cliente
+     public String asignar(){// devuelve la posicion en la q se asignara al cliente
          this.actual=this.first;
          for(int i=0;i<this.size;i++){
              if(actual.getEstado()==false){
                  this.actual.setEstado(true);
-                 return i+1;
+                 return actual.getNombre();
                  
              }
              else{
                  this.actual=this.actual.getNext();
              }
          }
-         return -2;
+         return actual.getNombre();
          
+     }
+     
+     
+     public void vaciar(int pos){
+         this.actual=this.first;
+         for(int i=0;i<pos-1;i++){
+             this.actual=this.actual.getNext();
+         }
+         this.actual.setEstado(false);
      }
      
      public int getSize(){
@@ -62,6 +71,8 @@ public class ListaC {
     public NodoC getFirst(){
         return this.first;
     }
+    
+    
     
 }
 
