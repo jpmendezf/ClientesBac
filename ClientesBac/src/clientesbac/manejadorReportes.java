@@ -33,4 +33,28 @@ public class manejadorReportes {
 
         catch(Exception e) {}
     }
+    
+    public void tablaClientesEntreFechas(javax.swing.JTable jTable1, String f1, String f2)
+    {
+        int linea=0;
+        
+        try
+        {
+            Cola cola=clientesbac.clientesBac.clientesCola.buscarFecha(f1, f2);
+            Nodo nodo=cola.getFirst();
+            
+            for(int i=0;i<cola.getSize();i++){
+                System.out.println(cola.getSize());
+                jTable1.setValueAt(nodo.getNombre(), linea, 0);
+                jTable1.setValueAt(nodo.getTipo(), linea, 1);
+                jTable1.setValueAt(nodo.getCorreo(), linea, 2);
+                jTable1.setValueAt(nodo.getFecha(), linea, 3);
+                jTable1.setValueAt(nodo.getHora(), linea, 4);
+                linea++;
+                nodo=nodo.getNext();
+            }
+        }
+
+        catch(Exception e) {}
+    }
 }

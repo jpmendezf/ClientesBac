@@ -182,7 +182,7 @@ public class frmIngresarCita extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Faltan datos por completar","Mensaje de error",JOptionPane.ERROR_MESSAGE);
         else{
             agregarTiquete();
-            enviarCorreo();
+            //enviarCorreo();
             verificarCaja();
             /*Nodo nodo=clientesbac.clientesBac.tiquetesCola.getFirst();
             for(int i=0;i<clientesbac.clientesBac.tiquetesCola.getSize();i++){

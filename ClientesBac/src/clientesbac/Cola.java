@@ -137,6 +137,7 @@ public class Cola {
           
             if ((fecha.after(fecha1) && fecha.before(fecha2)) || fecha.equals(fecha1) || fecha.equals(fecha2)){
                  cola.add(actual);
+                 cola.size++;
             }
             
             this.actual=this.actual.getNext();

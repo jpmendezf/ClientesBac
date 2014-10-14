@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
+import javax.swing.JTextField;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.JFreeChart;
@@ -266,7 +267,8 @@ public class frmConsultaClientes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonPastelActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        limpiar();
+        m.tablaClientesEntreFechas(jTable1, jXDatePicker1.getEditor().getText(), jXDatePicker2.getEditor().getText());
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButtonBarrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBarrasActionPerformed
