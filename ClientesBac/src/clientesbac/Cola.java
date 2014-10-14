@@ -6,6 +6,9 @@
 
 package clientesbac;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  *
  * @author Way
@@ -92,28 +95,48 @@ public class Cola {
             if(actual.getTipo().equals(criterio)){
                 cola.add(actual);
              }
+            
+            this.actual=this.actual.getNext();
+            
        }
        return cola;
    }
    
-   public Cola buscarHora(String criterio){//para cuando se ocupe listas x hora
-       Cola cola=new Cola();
-       this.actual=this.first;
-       for(int i=0;i<this.size;i++){
-            if(actual.getHora().equals(criterio)){
-                cola.add(actual);
-             }
-       }
-       return cola;
-   }
    
-   public Cola buscarFecha(String criterio){//para cuando se ocupe listas x fecha
+   public Cola buscarFecha(String f1, String f2){//para cuando se ocupe listas x fecha
        Cola cola=new Cola();
+       SimpleDateFormat formateador = new SimpleDateFormat("dd/MM/yyyy");
+        Date fecha1 = null;
+        Date fecha2 = null;
+       try{
+            String strFecha1 = f1;
+           
+            String strFecha2 = f2;
+            
+            fecha1 = formateador.parse(strFecha1);
+            fecha2 = formateador.parse(strFecha2);
+           }
+       catch(Exception e){}
+            
+      
        this.actual=this.first;
        for(int i=0;i<this.size;i++){
-            if(actual.getFecha().equals(criterio)){
-                cola.add(actual);
+           try{
+               
+            String strFecha = actual.getFecha();
+            Date fecha = null;
+            fecha = formateador.parse(strFecha);
+          
+            if ((fecha.after(fecha1) && fecha.before(fecha2)) || fecha.equals(fecha1) || fecha.equals(fecha2)){
+                 cola.add(actual);
+            }
+            
+            this.actual=this.actual.getNext();
+            
+         
              }
+        catch(Exception e){}
+            
        }
        return cola;
    }
